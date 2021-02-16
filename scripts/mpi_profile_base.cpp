@@ -87,11 +87,11 @@ extern "C" int MPI_Finalize(void ) {
     r->FinalizeFinalize();
     event_list.push_back(r);
     
-    printf("%ld Events:\n", event_list.size());
-    for (const auto &ex : event_list){
-        std::cout<<ex->name;
-        printf(" %d -> %f (%f - %f)\n", ex->rank, ex->time_end - ex->time_start, ex->time_end, ex->time_start);
-    }
+    //printf("%ld Events:\n", event_list.size());
+    //for (const auto &ex : event_list){
+    //    std::cout<<ex->name;
+    //    printf(" %d -> %f (%f - %f)\n", ex->rank, ex->time_end - ex->time_start, ex->time_end, ex->time_start);
+    //}
 
     to_json(r->rank);
 
