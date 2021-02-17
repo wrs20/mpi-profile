@@ -64,7 +64,9 @@ static void to_json(
     fh.open(basename + std::to_string(rank) + ".json");
     
 
-    fh << "{ \"events\":[\n";
+    fh << "{
+
+    fh << "\"events\":[\n";
     int exi = 0;
     for (const auto &ex : event_list){
         fh << ex->to_json();
