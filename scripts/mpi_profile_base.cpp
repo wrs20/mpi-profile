@@ -9,6 +9,8 @@
 
 static const std::chrono::high_resolution_clock::time_point global_time_start = std::chrono::high_resolution_clock::now();
 
+static int depth;
+
 static double get_time_since_start(){
     std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> ttmp = t0 - global_time_start;
@@ -25,9 +27,11 @@ class Record {
         double time_end;
         std::string name;
         int rank;
+        int depth;
 
         Record(const std::string name){
             this->name = name;
+            this->depth = depth;
         };
         void Init(){
             this->time_start = get_time_since_start();
@@ -62,7 +66,6 @@ static void to_json(
     const std::string basename = "mpi_profile_output_";
     std::ofstream fh;
     fh.open(basename + std::to_string(rank) + ".json");
-    
 
     fh << "{
 

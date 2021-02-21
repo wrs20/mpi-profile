@@ -5,7 +5,7 @@ import json
 from math import ceil
 import numpy as np
 from bokeh.io import show, curdoc, output_file
-from bokeh.models import ColumnDataSource, LinearAxis, Grid, HBar, LinearAxis, WheelZoomTool
+from bokeh.models import ColumnDataSource, LinearAxis, Grid, HBar, LinearAxis, WheelZoomTool, HoverTool
 from bokeh.palettes import GnBu3, OrRd3
 from bokeh.plotting import figure
 
@@ -44,13 +44,21 @@ if __name__ == "__main__":
     plot = figure(
         #title=None, plot_width=max(ceil(8000 * (t_end - t_start)), 300), plot_height=80*n_ranks,
         #min_border=0,
-        sizing_mode="stretch_width",
+        sizing_mode="stretch_both",
         tools="pan,wheel_zoom, reset",
         active_scroll="wheel_zoom",
         )
 
     glyph = HBar(y="rank", right="time_end", left="time_start", height=0.5, fill_color="#b3de69")
     plot.add_glyph(source, glyph)
+
+    plot.add_tools(HoverTool(
+        tooltips=[
+            ( "name",   "@name" ),
+            ( "time_start", "@time_start"),
+            ( "time_taken", "@time_taken"),
+        ],
+    ))
 
 
 
