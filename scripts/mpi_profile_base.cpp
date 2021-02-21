@@ -67,7 +67,7 @@ static void to_json(
     std::ofstream fh;
     fh.open(basename + std::to_string(rank) + ".json");
 
-    fh << "{
+    fh << "{";
 
     fh << "\"events\":[\n";
     int exi = 0;
